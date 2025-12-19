@@ -6,7 +6,7 @@
 /*   By: hfandres <hfandres@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 13:58:17 by torakoto          #+#    #+#             */
-/*   Updated: 2025/12/19 10:25:32 by hfandres         ###   ########.fr       */
+/*   Updated: 2025/12/19 10:54:30 by hfandres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ void		unset_env_var(t_env **env_list, char *key);
 int			is_whitespace_only(const char *str);
 char 		*ft_strndup(const char *s, int n);
 int			ft_strcmp(const char *s1, const char *s2);
+int			ft_isspace(unsigned int c);
+
 // lexing
 t_token		*lexer(const char *input);
 t_token		*new_token(char *content, t_type type);
