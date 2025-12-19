@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hfandres <hfandres@student.42antananari    +#+  +:+       +#+        */
+/*   By: hfandres <hfandres@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 07:47:09 by torakoto          #+#    #+#             */
-/*   Updated: 2025/12/18 11:21:21 by hfandres         ###   ########.fr       */
+/*   Updated: 2025/12/19 12:13:04 by hfandres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,6 +147,8 @@ static int prepare_execution(t_cmd *cmd_table, t_all *all)
 	{
 		if (handle_heredocs(cmd_table, all) != 0)
 		{
+			if (all->heredoc_interrupted)
+				return (130);
 			all->exit_code = 1;
 			return (1);
 		}
