@@ -6,7 +6,7 @@
 /*   By: hfandres <hfandres@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 14:01:29 by torakoto          #+#    #+#             */
-/*   Updated: 2025/12/18 08:50:43 by hfandres         ###   ########.fr       */
+/*   Updated: 2025/12/18 09:41:04 by hfandres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <readline/history.h>
 #include <readline/readline.h>
 
-t_bool g_ctrlc_received = FALSE;
+t_bool	g_ctrlc_received = FALSE;
 
 void	interactive_sigint_handler(int signum)
 {

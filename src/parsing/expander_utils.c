@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hfandres <hfandres@student.42antananari    +#+  +:+       +#+        */
+/*   By: hfandres <hfandres@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 11:40:38 by torakoto          #+#    #+#             */
-/*   Updated: 2025/12/10 10:39:40 by hfandres         ###   ########.fr       */
+/*   Updated: 2025/12/19 10:24:14 by hfandres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,14 @@ char	*join_and_free(char *s1, char *s2)
 	free(s1);
 	free(s2);
 	return (result);
+}
+
+void	remove_token(t_all *all, t_token *prev, t_token *current, t_token *next)
+{
+	if (prev)
+		prev->next = next;
+	else
+		all->tokens = next;
+	free(current->content);
+	free(current);
 }

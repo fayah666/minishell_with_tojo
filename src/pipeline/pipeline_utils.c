@@ -6,7 +6,7 @@
 /*   By: hfandres <hfandres@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 01:37:26 by hfandres          #+#    #+#             */
-/*   Updated: 2025/12/11 01:39:11 by hfandres         ###   ########.fr       */
+/*   Updated: 2025/12/18 09:42:43 by hfandres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,3 @@ void	parent_pipeline_step(t_cmd *current, int *in_fd, int pipe_fds[2])
 		*in_fd = pipe_fds[0];
 	}
 }
-

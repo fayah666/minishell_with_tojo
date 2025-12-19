@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_process.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hfandres <hfandres@student.42antananari    +#+  +:+       +#+        */
+/*   By: hfandres <hfandres@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 13:56:45 by torakoto          #+#    #+#             */
-/*   Updated: 2025/12/10 11:14:27 by hfandres         ###   ########.fr       */
+/*   Updated: 2025/12/19 09:22:54 by hfandres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ static void	heredoc_child_loop(t_hdoc_data *data, t_redir *redir, t_all *all)
 	while (1)
 	{
 		line = readline("> ");
+		printf("DEBUG: ligne lue = |%s| del = %s\n", line, data->delimiter);
 		if (!line || ft_strcmp(line, data->delimiter) == 0)
 		{
 			if (line)

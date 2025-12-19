@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hfandres <hfandres@student.42antananari    +#+  +:+       +#+        */
+/*   By: hfandres <hfandres@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 09:26:28 by torakoto          #+#    #+#             */
-/*   Updated: 2025/12/10 10:19:01 by hfandres         ###   ########.fr       */
+/*   Updated: 2025/12/18 09:46:24 by hfandres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,19 @@
 */
 int	dispatch_complex_builtin(char **args, t_all *all)
 {
-    if (!args || !args[0])
-        return (0);
-    if (ft_strcmp(args[0], "cd") == 0)
-        all->exit_code = ft_cd(args, &all->env_list);
-    else if (ft_strcmp(args[0], "export") == 0)
-        all->exit_code = ft_export(args, &all->env_list);
-    else if (ft_strcmp(args[0], "unset") == 0)
-        all->exit_code = ft_unset(args, &all->env_list);
-    else if (ft_strcmp(args[0], "exit") == 0)
-        ft_exit(args, all);
-    else
-        return (0);
-    return (1);
+	if (!args || !args[0])
+		return (0);
+	if (ft_strcmp(args[0], "cd") == 0)
+		all->exit_code = ft_cd(args, &all->env_list);
+	else if (ft_strcmp(args[0], "export") == 0)
+		all->exit_code = ft_export(args, &all->env_list);
+	else if (ft_strcmp(args[0], "unset") == 0)
+		all->exit_code = ft_unset(args, &all->env_list);
+	else if (ft_strcmp(args[0], "exit") == 0)
+		ft_exit(args, all);
+	else
+		return (0);
+	return (1);
 }
 
 /*
@@ -42,20 +42,20 @@ int	dispatch_complex_builtin(char **args, t_all *all)
 */
 int	dispatch_simple_builtin(char **args, t_all *all, int *status)
 {
-    char	*cmd_name;
+	char	*cmd_name;
 
-    if (!args || !args[0])
-        return (0);
-    cmd_name = args[0];
-    if (ft_strcmp(cmd_name, "echo") == 0)
-        *status = ft_echo(args);
-    else if (ft_strcmp(cmd_name, "pwd") == 0)
-        *status = ft_pwd();
-    else if (ft_strcmp(cmd_name, "env") == 0)
-        *status = ft_env(all->env_list);
-    else
-        return (0);
-    return (1);
+	if (!args || !args[0])
+		return (0);
+	cmd_name = args[0];
+	if (ft_strcmp(cmd_name, "echo") == 0)
+		*status = ft_echo(args);
+	else if (ft_strcmp(cmd_name, "pwd") == 0)
+		*status = ft_pwd();
+	else if (ft_strcmp(cmd_name, "env") == 0)
+		*status = ft_env(all->env_list);
+	else
+		return (0);
+	return (1);
 }
 
 /*
@@ -64,22 +64,22 @@ int	dispatch_simple_builtin(char **args, t_all *all, int *status)
 */
 int	dispatch_all_builtins(char **args, t_all *all, int *status)
 {
-    if (dispatch_simple_builtin(args, all, status))
-        return (1);
-    if (!args || !args[0])
-        return (0);
-    if (ft_strcmp(args[0], "cd") == 0)
-        *status = ft_cd(args, &all->env_list);
-    else if (ft_strcmp(args[0], "export") == 0)
-        *status = ft_export(args, &all->env_list);
-    else if (ft_strcmp(args[0], "unset") == 0)
-        *status = ft_unset(args, &all->env_list);
-    else if (ft_strcmp(args[0], "exit") == 0)
-    {
-        ft_exit(args, all);
-        *status = all->exit_code;
-    }
-    else
-        return (0);
-    return (1);
+	if (dispatch_simple_builtin(args, all, status))
+		return (1);
+	if (!args || !args[0])
+		return (0);
+	if (ft_strcmp(args[0], "cd") == 0)
+		*status = ft_cd(args, &all->env_list);
+	else if (ft_strcmp(args[0], "export") == 0)
+		*status = ft_export(args, &all->env_list);
+	else if (ft_strcmp(args[0], "unset") == 0)
+		*status = ft_unset(args, &all->env_list);
+	else if (ft_strcmp(args[0], "exit") == 0)
+	{
+		ft_exit(args, all);
+		*status = all->exit_code;
+	}
+	else
+		return (0);
+	return (1);
 }

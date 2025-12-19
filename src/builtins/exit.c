@@ -6,7 +6,7 @@
 /*   By: hfandres <hfandres@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 10:02:42 by torakoto          #+#    #+#             */
-/*   Updated: 2025/12/15 11:28:37 by hfandres         ###   ########.fr       */
+/*   Updated: 2025/12/18 09:59:41 by hfandres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,13 +80,13 @@ int	check_limits(const char *str, char sign)
 
 void	ft_exit(char **args, t_all *all)
 {
-	int					exit_code;
+	int	exit_code;
 
 	exit_code = all->exit_code;
 	if (args[1])
 	{
 		if (!is_numeric_string(args[1]) || \
-			check_limits(args[1], args[1][0]))
+check_limits(args[1], args[1][0]))
 		{
 			printf("exit\n");
 			exec_error("exit", "numeric argument required");

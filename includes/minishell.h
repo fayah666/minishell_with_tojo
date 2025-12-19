@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hfandres <hfandres@student.42antananari    +#+  +:+       +#+        */
+/*   By: hfandres <hfandres@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 13:58:17 by torakoto          #+#    #+#             */
-/*   Updated: 2025/12/18 10:54:58 by hfandres         ###   ########.fr       */
+/*   Updated: 2025/12/19 10:25:32 by hfandres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ int			expander(t_all *all);
 char		*get_env_value(const char *key, t_env *env_list);
 char		*append_char(char *str, char c);
 char		*join_and_free(char *s1, char *s2);
+void	remove_token(t_all *all, t_token *prev, t_token *current, t_token *next);
 
 // parser
 t_cmd		*parser(t_all *all);
