@@ -6,7 +6,7 @@
 /*   By: hfandres <hfandres@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 11:55:55 by torakoto          #+#    #+#             */
-/*   Updated: 2025/12/19 11:29:44 by hfandres         ###   ########.fr       */
+/*   Updated: 2025/12/19 11:37:11 by hfandres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,7 @@ static int	count_len(const char *str)
 		else
 		{
 			if (in_space && len > 0)
-			{
-
 				len++;
-			}
 			len++;
 			in_space = 0;
 		}
