@@ -6,7 +6,7 @@
 /*   By: hfandres <hfandres@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 10:02:42 by torakoto          #+#    #+#             */
-/*   Updated: 2026/01/15 10:41:12 by hfandres         ###   ########.fr       */
+/*   Updated: 2026/01/15 13:26:16 by hfandres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,7 @@ int	check_arguments(t_all *all, t_cmd *cmd)
 {
 	if (cmd && cmd->args && cmd->args[1])
 	{
-		if (!is_numeric_string(cmd->args[1]) || \
-			check_limits(cmd->args[1]))
+		if (!is_numeric_string(cmd->args[1]) || check_limits(cmd->args[1]))
 		{
 			exec_error("exit", "numeric argument required");
 			free_all_and_exit(all, 2);

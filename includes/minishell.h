@@ -6,7 +6,7 @@
 /*   By: hfandres <hfandres@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 13:58:17 by torakoto          #+#    #+#             */
-/*   Updated: 2026/01/15 12:15:25 by hfandres         ###   ########.fr       */
+/*   Updated: 2026/01/15 13:25:22 by hfandres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ void		free_all_and_exit(t_all *all, int exit_code);
 char		**env_list_to_array(t_env *env_list);
 void		free_array(char **arr);
 void		exec_error(char *cmd, char *msg);
-char 		*invalid_path(char *cmd, t_all *all);
+char		*get_valid_path(char *cmd, t_all *all);
 
 void		handle_path_error(char *cmd_str, t_all *all);
 void		apply_heredoc_redirections(t_cmd *cmd);
@@ -108,6 +108,7 @@ int			try_dispatch_complex_builtin(t_cmd *cmd, t_all *all,
 void		fork_and_execute(t_cmd *cmd, t_all *all, char **args);
 
 void		parent_process(pid_t pid, t_all *all);
+int			child_process_prepare(t_cmd *cmd, t_all *all);
 void		child_process(t_cmd *cmd, t_all *all);
 
 int			execute_pipeline(t_cmd *cmd_list, t_all *all);

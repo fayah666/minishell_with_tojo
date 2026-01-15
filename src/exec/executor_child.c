@@ -6,7 +6,7 @@
 /*   By: hfandres <hfandres@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 11:05:06 by torakoto          #+#    #+#             */
-/*   Updated: 2026/01/15 12:35:12 by hfandres         ###   ########.fr       */
+/*   Updated: 2026/01/15 13:22:35 by hfandres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,32 +19,6 @@ void	free_all_and_exit(t_all *all, int exit_code)
 	free_env_list(all->env_list);
 	free_token_list(all->tokens);
 	exit(exit_code);
-}
-
-char	*get_valid_path(t_cmd *cmd, t_all *all)
-{
-	char		*path;
-	struct stat	path_stat;
-
-	path = find_command_path(cmd->args[0], all->env_list);
-	if (!path)
-	{
-		handle_path_error(cmd->args[0], all);
-		free_all_and_exit(all, all->exit_code);
-	}
-	if (stat(path, &path_stat) == 0 && S_ISDIR(path_stat.st_mode))
-	{
-		exec_error(path, "Is a directory");
-		free(path);
-		exit(126);
-	}
-	if (access(path, X_OK) != 0)
-	{
-		exec_error(path, "Permission denied");
-		free(path);
-		exit(126);
-	}
-	return (path);
 }
 
 void	parent_process(pid_t pid, t_all *all)
@@ -71,12 +45,10 @@ void	parent_process(pid_t pid, t_all *all)
 	}
 }
 
-void	child_process(t_cmd *cmd, t_all *all)
+int	child_process_prepare(t_cmd *cmd, t_all *all)
 {
-	int		builtin_status;
-	char	*path;
-	char	**envp;
-	int		i;
+	int	builtin_status;
+	int	i;
 
 	apply_heredoc_redirections(cmd);
 	close_heredoc_fds(all->cmd_table);
@@ -91,7 +63,17 @@ void	child_process(t_cmd *cmd, t_all *all)
 		free_all_and_exit (all, 1);
 	if (dispatch_all_builtins(cmd, all, &builtin_status))
 		free_all_and_exit(all, builtin_status);
-	path = invalid_path(cmd->args[0], all);
+	return (i);
+}
+
+void	child_process(t_cmd *cmd, t_all *all)
+{
+	char	*path;
+	char	**envp;
+	int		i;
+
+	i = child_process_prepare(cmd, all);
+	path = get_valid_path(cmd->args[0], all);
 	if (!path)
 		free_all_and_exit(all, all->exit_code);
 	envp = env_list_to_array(all->env_list);

@@ -6,7 +6,7 @@
 /*   By: hfandres <hfandres@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 18:34:01 by torakoto          #+#    #+#             */
-/*   Updated: 2026/01/15 12:15:06 by hfandres         ###   ########.fr       */
+/*   Updated: 2026/01/15 13:26:43 by hfandres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ char	*find_command_path(const char *cmd, t_env *env_list)
 	return (executable_path);
 }
 
-char *invalid_path(char *cmd, t_all *all)
+char	*get_valid_path(char *cmd, t_all *all)
 {
 	struct stat	path_stat;
 	char		*path;
