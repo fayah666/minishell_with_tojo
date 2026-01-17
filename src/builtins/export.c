@@ -6,7 +6,7 @@
 /*   By: hfandres <hfandres@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 15:24:46 by torakoto          #+#    #+#             */
-/*   Updated: 2026/01/07 11:31:11 by hfandres         ###   ########.fr       */
+/*   Updated: 2026/01/17 09:54:09 by hfandres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,10 +77,14 @@ int	ft_export(char **args, t_env **env_list)
 {
 	signal(SIGPIPE, SIG_IGN);
 	if (!args || !args[0])
+	{
+		signal(SIGPIPE, SIG_DFL);
 		return (1);
+	}
 	if (!args[1])
 	{
 		print_sorted_env(*env_list);
+		signal(SIGPIPE, SIG_DFL);
 		return (0);
 	}
 	signal(SIGPIPE, SIG_DFL);
