@@ -6,7 +6,7 @@
 /*   By: hfandres <hfandres@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 18:34:01 by torakoto          #+#    #+#             */
-/*   Updated: 2026/01/15 13:26:43 by hfandres         ###   ########.fr       */
+/*   Updated: 2026/01/15 13:40:04 by hfandres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ char	*get_valid_path(char *cmd, t_all *all)
 	path = find_command_path(cmd, all->env_list);
 	if (!path)
 	{
-		exec_error(cmd, "command not found");
+		handle_path_error(cmd, all);
 		all->exit_code = 127;
 		return (NULL);
 	}
