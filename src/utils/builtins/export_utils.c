@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: torakoto <torakoto@student.42antananari    +#+  +:+       +#+        */
+/*   By: hfandres <hfandres@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 11:50:52 by torakoto          #+#    #+#             */
-/*   Updated: 2025/12/22 21:47:24 by torakoto         ###   ########.fr       */
+/*   Updated: 2026/01/17 10:01:11 by hfandres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 static void	print_export_var(t_env *var)
 {
-	printf("declare -x %s", var->key);
+	printf("export %s", var->key);
 	if (var->value)
 		printf("=\"%s\"", var->value);
 	printf("\n");
