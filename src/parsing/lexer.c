@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: torakoto <torakoto@student.42antananari    +#+  +:+       +#+        */
+/*   By: hfandres <hfandres@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 08:17:35 by torakoto          #+#    #+#             */
-/*   Updated: 2025/12/22 21:49:12 by torakoto         ###   ########.fr       */
+/*   Updated: 2026/01/18 15:36:17 by hfandres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,11 @@ int	has_unclosed_quotes(const char *input)
 
 static int	handle_special_char(const char *input, int i, t_token **list)
 {
+	if (input[i] == '>' && input[i + 1] == '|')
+	{
+		add_token_back(list, new_token(ft_strdup(">|"), REDIR_OUT));
+		return (2);
+	}
 	if (input[i + 1] && input[i] == input[i + 1])
 	{
 		if (input[i] == '<')

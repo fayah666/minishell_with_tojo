@@ -6,7 +6,7 @@
 /*   By: hfandres <hfandres@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 10:24:34 by torakoto          #+#    #+#             */
-/*   Updated: 2026/01/05 10:04:52 by hfandres         ###   ########.fr       */
+/*   Updated: 2026/01/18 15:36:03 by hfandres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,9 @@ static int	create_and_add_redir(t_cmd *cmd, t_token *tok, t_type redir_type)
 	redir->type = redir_type;
 	redir->heredoc_fd = -1;
 	redir->is_quoted = 0;
-	if (redir_type == HERE_DOC)
-		redir->is_quoted = tok->has_quotes;
+	if (redir_type == HERE_DOC && \
+		(redir->filename[0] == '\"' || redir->filename[0] == '\''))
+		redir->is_quoted = 1;
 	redir->next = NULL;
 	if (!cmd->redirections)
 		cmd->redirections = redir;
@@ -58,7 +59,7 @@ static int	handle_redirection(t_token **tok, t_cmd *cmd, t_all *all)
 
 	redir_type = (*tok)->type;
 	*tok = (*tok)->next;
-	if (!*tok || (*tok)->type != WORD)
+	if (!*tok || ((*tok)->type != WORD && (*tok)->type != PIPE))
 	{
 		if (*tok)
 			return (syntax_error((*tok)->content, all));
@@ -83,7 +84,7 @@ static t_cmd	*process_tokens(t_all *all, t_cmd *cmd_list)
 				return (NULL);
 		}
 		else if (current_token->type == WORD)
-			add_arg_to_cmd(current_cmd, current_token->content);
+			add_token_to_cmd(current_cmd, current_token);
 		else if (current_token->type == PIPE)
 		{
 			current_cmd = handle_pipe(&current_token, current_cmd, all);

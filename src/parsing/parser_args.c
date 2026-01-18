@@ -60,3 +60,31 @@ int	add_arg_to_cmd(t_cmd *cmd, char *arg)
 	cmd->args = new_args;
 	return (0);
 }
+
+int	add_token_to_cmd(t_cmd *cmd, t_token *token)
+{
+	char	**split;
+	int		i;
+
+	if (token->has_quotes)
+		return (add_arg_to_cmd(cmd, token->content));
+	split = ft_split(token->content, ' ');
+	if (!split)
+		return (1);
+	i = 0;
+	while (split[i])
+	{
+		if (add_arg_to_cmd(cmd, split[i]))
+		{
+			// free split
+			while (split[i])
+				free(split[i++]);
+			free(split);
+			return (1);
+		}
+		free(split[i]);
+		i++;
+	}
+	free(split);
+	return (0);
+}

@@ -6,7 +6,7 @@
 /*   By: hfandres <hfandres@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 13:58:17 by torakoto          #+#    #+#             */
-/*   Updated: 2026/01/15 13:25:22 by hfandres         ###   ########.fr       */
+/*   Updated: 2026/01/18 12:35:02 by hfandres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ void		free_cmd_table(t_cmd *head);
 
 t_cmd		*new_cmd_node(void);
 int			add_arg_to_cmd(t_cmd *cmd, char *arg);
+int			add_token_to_cmd(t_cmd *cmd, t_token *token);
 int			is_redir(t_type type);
 int			syntax_error(char *token_content, t_all *all);
 
