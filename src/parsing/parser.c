@@ -6,7 +6,7 @@
 /*   By: hfandres <hfandres@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 10:24:34 by torakoto          #+#    #+#             */
-/*   Updated: 2026/01/19 09:02:01 by hfandres         ###   ########.fr       */
+/*   Updated: 2026/01/19 09:52:08 by hfandres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ static int	create_and_add_redir(t_cmd *cmd, t_token *tok, t_type redir_type)
 	redir->type = redir_type;
 	redir->heredoc_fd = -1;
 	redir->is_quoted = 0;
-	if (redir_type == HERE_DOC && \
-		(redir->filename[0] == '\"' || redir->filename[0] == '\''))
+	if (redir_type == HERE_DOC
+		&& (redir->filename[0] == '\"' || redir->filename[0] == '\''))
 		redir->is_quoted = 1;
 	redir->next = NULL;
 	if (!cmd->redirections)
