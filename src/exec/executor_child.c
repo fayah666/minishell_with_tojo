@@ -6,7 +6,7 @@
 /*   By: hfandres <hfandres@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 11:05:06 by torakoto          #+#    #+#             */
-/*   Updated: 2026/01/18 14:52:46 by hfandres         ###   ########.fr       */
+/*   Updated: 2026/01/19 08:42:44 by hfandres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	child_process_prepare(t_cmd *cmd, t_all *all)
 		i++;
 	if (!cmd->args[i])
 	{
-		exec_error("", "command not found");
+		handle_path_error (cmd->args[0], all);
 		free_all_and_exit (all, 127);
 	}
 	if (dispatch_all_builtins(cmd, all, &builtin_status))

@@ -6,7 +6,7 @@
 /*   By: hfandres <hfandres@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 10:24:34 by torakoto          #+#    #+#             */
-/*   Updated: 2026/01/18 15:36:03 by hfandres         ###   ########.fr       */
+/*   Updated: 2026/01/19 09:02:01 by hfandres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static int	handle_redirection(t_token **tok, t_cmd *cmd, t_all *all)
 
 	redir_type = (*tok)->type;
 	*tok = (*tok)->next;
-	if (!*tok || ((*tok)->type != WORD && (*tok)->type != PIPE))
+	if (!*tok || ((*tok)->type != WORD))
 	{
 		if (*tok)
 			return (syntax_error((*tok)->content, all));

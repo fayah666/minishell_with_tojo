@@ -76,7 +76,6 @@ int	add_token_to_cmd(t_cmd *cmd, t_token *token)
 	{
 		if (add_arg_to_cmd(cmd, split[i]))
 		{
-			// free split
 			while (split[i])
 				free(split[i++]);
 			free(split);
