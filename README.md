@@ -5,9 +5,7 @@
 	minishell
 
 ## Summary :
-	This project is about creating a small, interactive UNIX shell similar to bash.
-	It focuses on the fundamentals of command parsing and execution: tokenization, quotes,
-	environment variable expansion, pipelines, redirections, and process/signal handling.
+	This project is about creating a small, interactive UNIX shell that emulates bash. It focuses on the fundamentals of command parsing and execution: tokenization, quotes, environment variable expansion, pipelines, redirections, and process/signal handling.
 
 	At a high level, this minishell:
 	- Displays a prompt and reads user input using GNU Readline.
@@ -16,7 +14,7 @@
 	- Implements redirections (<, >, >>, <<) and pipelines (|).
 	- Handles interactive signals (Ctrl-C, Ctrl-\, Ctrl-D) in a bash-like way.
 
-	Implemented builtins: echo, cd, pwd, export, unset, env, exit.
+	Implemented builtin commands: echo, cd, pwd, export, unset, env, exit.
 
 # Instructions
 
@@ -68,8 +66,7 @@ make valgo
 * Handle the following **redirections**:
 	- < should redirect input.
 	- \> should redirect output.
-	- << should be given a delimiter, then read the input until a line containing the
-	delimiter is seen. However, it doesn’t have to update the history!
+	- << should be given a delimiter, then read the input until a line containing the delimiter is seen. However, it doesn’t have to update the history!
 	- \>\> should redirect output in append mode.
 * It supports **pipelines** (| character).
 * It expands **environment variables** (`$VAR`) and supports the common special case `$?` (last exit status).

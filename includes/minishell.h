@@ -6,7 +6,7 @@
 /*   By: hfandres <hfandres@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 13:58:17 by torakoto          #+#    #+#             */
-/*   Updated: 2026/01/20 14:48:53 by hfandres         ###   ########.fr       */
+/*   Updated: 2026/01/20 20:09:03 by hfandres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void		update_shell_level(t_env **env_list);
 int			is_valid_identifier(char *str);
 void		set_env_var(t_env **env_list, char *key, char *value);
 void		unset_env_var(t_env **env_list, char *key);
-void		append_env_var(t_env **env_list, char *key, char *suffix);
+int			append_env_var(t_env **env_list, char *key, char *suffix);
 
 int			is_whitespace_only(const char *str);
 char		*ft_strndup(const char *s, int n);

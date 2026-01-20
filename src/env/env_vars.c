@@ -6,7 +6,7 @@
 /*   By: hfandres <hfandres@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 15:10:38 by torakoto          #+#    #+#             */
-/*   Updated: 2026/01/20 20:03:19 by hfandres         ###   ########.fr       */
+/*   Updated: 2026/01/20 20:15:33 by hfandres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,13 @@ void	set_env_var(t_env **env_list, char *key, char *value)
 		add_new_env_var(env_list, key, value);
 }
 
-void	append_env_var(t_env **env_list, char *key, char *suffix)
+int	append_env_var(t_env **env_list, char *key, char *suffix)
 {
 	t_env	*current;
 	char	*joined;
 
 	if (!key || !env_list)
-		return ;
+		return (-1);
 	current = find_env_var(*env_list, key);
 	if (!suffix)
 		suffix = "";
@@ -69,14 +69,14 @@ void	append_env_var(t_env **env_list, char *key, char *suffix)
 	{
 		joined = ft_strjoin(current->value, suffix);
 		if (!joined)
-			return ;
+			return (-1);
 		if (current->value)
 			free(current->value);
 		current->value = joined;
-		return ;
+		return (0);
 	}
 	else
-		validate_and_set(key, suffix, env_list);
+		return (validate_and_set(key, suffix, env_list));
 }
 
 void	unset_env_var(t_env **env_list, char *key)

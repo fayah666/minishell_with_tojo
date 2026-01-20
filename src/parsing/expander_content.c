@@ -12,6 +12,24 @@
 
 #include "minishell.h"
 
+char *handle_value(char *key, char *value)
+{
+	char	*result;
+
+	if (ft_strlen(value) > 0)
+	{
+		free(key);
+		return (value);
+	}
+	if (ft_isdigit(key[0]))
+		result = ft_strdup(key + 1);
+	else
+		result = ft_strdup("");
+	free(key);
+	free(value);
+	return (result);
+}
+
 static char	*handle_expansion(int *i, const char *content, t_all *all)
 {
 	int		start;
@@ -26,15 +44,14 @@ static char	*handle_expansion(int *i, const char *content, t_all *all)
 		(*i)++;
 		return (ft_itoa(all->exit_code));
 	}
-	if (!ft_isalpha(content[*i]) && content[*i] != '_')
+	if (! (ft_isalnum(content[*i]) || content[*i] == '_'))
 		return (ft_strdup("$"));
 	start = *i;
 	while (ft_isalnum(content[*i]) || content[*i] == '_')
 		(*i)++;
 	key = ft_strndup(&content[start], *i - start);
 	value = get_env_value(key, all->env_list);
-	free(key);
-	return (value);
+	return(handle_value(key, value));
 }
 
 static char	*process_and_append(char *new, const char *old, t_exp_state *st,
@@ -42,16 +59,13 @@ static char	*process_and_append(char *new, const char *old, t_exp_state *st,
 {
 	if (old[st->i] == '$' && st->quote_char != '\'')
 	{
-		if (st->quote_char != 0
-			&& (old[st->i + 1] == '\'' || old[st->i + 1] == '"'))
+		if (st->quote_char != 0 && (old[st->i + 1] == '\'' || old[st->i + 1] == '"'))
 		{
 			new = append_char(new, old[st->i]);
 			st->i++;
 		}
 		else
-		{
 			new = join_and_free(new, handle_expansion(&st->i, old, a));
-		}
 	}
 	else
 	{
