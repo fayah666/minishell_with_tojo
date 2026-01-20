@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-char *handle_value(char *key, char *value)
+char	*handle_value(char *key, char *value)
 {
 	char	*result;
 
@@ -51,7 +51,7 @@ static char	*handle_expansion(int *i, const char *content, t_all *all)
 		(*i)++;
 	key = ft_strndup(&content[start], *i - start);
 	value = get_env_value(key, all->env_list);
-	return(handle_value(key, value));
+	return (handle_value(key, value));
 }
 
 static char	*process_and_append(char *new, const char *old, t_exp_state *st,
@@ -59,7 +59,8 @@ static char	*process_and_append(char *new, const char *old, t_exp_state *st,
 {
 	if (old[st->i] == '$' && st->quote_char != '\'')
 	{
-		if (st->quote_char != 0 && (old[st->i + 1] == '\'' || old[st->i + 1] == '"'))
+		if (st->quote_char != 0
+			&& (old[st->i + 1] == '\'' || old[st->i + 1] == '"'))
 		{
 			new = append_char(new, old[st->i]);
 			st->i++;
