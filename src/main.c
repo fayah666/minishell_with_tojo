@@ -6,7 +6,7 @@
 /*   By: hfandres <hfandres@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 14:01:29 by torakoto          #+#    #+#             */
-/*   Updated: 2026/01/18 15:42:54 by hfandres         ###   ########.fr       */
+/*   Updated: 2026/01/20 14:44:47 by hfandres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,11 @@ static void	process_input(char *input, t_all *all)
 	{
 		printf("minishell: syntax error: unclosed quotes\n");
 		all->exit_code = EXIT_SYNTAX_ERROR;
+		return ;
+	}
+	if (has_consecutive_pipes(input))
+	{
+		syntax_error("||", all);
 		return ;
 	}
 	all->tokens = lexer(input);

@@ -6,7 +6,7 @@
 /*   By: hfandres <hfandres@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 08:17:35 by torakoto          #+#    #+#             */
-/*   Updated: 2026/01/19 08:54:05 by hfandres         ###   ########.fr       */
+/*   Updated: 2026/01/20 20:01:34 by hfandres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,33 @@ int	has_unclosed_quotes(const char *input)
 	}
 	if (quote_char != 0)
 		return (1);
+	return (0);
+}
+
+int	has_consecutive_pipes(const char *input)
+{
+	int		i;
+	char	quote_char;
+	int		j;
+
+	i = 0;
+	quote_char = 0;
+	while (input[i])
+	{
+		if (quote_char == 0 && (input[i] == '\'' || input[i] == '"'))
+			quote_char = input[i];
+		else if (quote_char != 0 && input[i] == quote_char)
+			quote_char = 0;
+		else if (quote_char == 0 && input[i] == '|')
+		{
+			j = i + 1;
+			while (input[j] && ft_isspace((unsigned int)input[j]))
+				j++;
+			if (input[j] == '|')
+				return (1);
+		}
+		i++;
+	}
 	return (0);
 }
 

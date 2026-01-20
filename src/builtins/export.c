@@ -6,33 +6,37 @@
 /*   By: hfandres <hfandres@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 15:24:46 by torakoto          #+#    #+#             */
-/*   Updated: 2026/01/17 09:54:09 by hfandres         ###   ########.fr       */
+/*   Updated: 2026/01/20 20:03:46 by hfandres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtins.h"
 #include "minishell.h"
 
-static void	print_export_error(char *arg)
+static int	print_export_error(char *arg)
 {
 	write(2, "minishell: export: `", 20);
 	write(2, arg, ft_strlen(arg));
 	write(2, "': not a valid identifier\n", 26);
+	return (1);
 }
 
-static int	validate_and_set(char *key, char *value, t_env **env_list)
+int	validate_and_set(char *key, char *value, t_env **env_list)
 {
-	if (!key || !is_valid_identifier(key))
-	{
-		if (key)
-			free(key);
-		if (value)
-			free(value);
-		return (1);
-	}
-	set_env_var(env_list, key, value);
+	char	*trimmed_value;
+
+	trimmed_value = NULL;
 	if (value)
+	{
+		if (value[0] == ' ')
+			trimmed_value = ft_strdup(value + 1);
+		else
+			trimmed_value = ft_strdup(value);
 		free(value);
+	}
+	set_env_var(env_list, key, trimmed_value);
+	if (trimmed_value)
+		free(trimmed_value);
 	free(key);
 	return (0);
 }
@@ -44,15 +48,22 @@ static int	export_one(char *arg, t_env **env_list)
 
 	if (!arg || !*arg)
 		return (1);
-	if (!split_assignment(arg, &key, &value))
+	if (ft_strnstr(arg, "+=", ft_strlen(arg)))
 	{
-		print_export_error(arg);
-		return (1);
+		if (!split_assignment(arg, &key, &value, "+="))
+			return (print_export_error(key));
+		append_env_var(env_list, key, value);
+		if (key)
+			free(key);
+		if (value)
+			free(value);
 	}
-	if (validate_and_set(key, value, env_list) != 0)
+	else
 	{
-		print_export_error(arg);
-		return (1);
+		if (!split_assignment(arg, &key, &value, "="))
+			return (print_export_error(key));
+		if (validate_and_set(key, value, env_list) != 0)
+			return (print_export_error(arg));
 	}
 	return (0);
 }

@@ -97,5 +97,5 @@ exit
 
 AI usage
 - Used GitHub Copilot to find duplicate functions and to refactor long functions (over 25 lines) into 2 or 3 smaller functions.
-- Reviewed the codebase to identify and remove leftover debug functions or old function usused.
+- Reviewed the codebase to identify and remove leftover debug functions or old function unused.
 - Using chatGpt to understand new concepts more quickly.

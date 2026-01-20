@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_vars.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: torakoto <torakoto@student.42antananari    +#+  +:+       +#+        */
+/*   By: hfandres <hfandres@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 15:10:38 by torakoto          #+#    #+#             */
-/*   Updated: 2025/12/22 21:47:49 by torakoto         ###   ########.fr       */
+/*   Updated: 2026/01/20 20:03:19 by hfandres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,30 @@ void	set_env_var(t_env **env_list, char *key, char *value)
 	}
 	else
 		add_new_env_var(env_list, key, value);
+}
+
+void	append_env_var(t_env **env_list, char *key, char *suffix)
+{
+	t_env	*current;
+	char	*joined;
+
+	if (!key || !env_list)
+		return ;
+	current = find_env_var(*env_list, key);
+	if (!suffix)
+		suffix = "";
+	if (current && current->value && current->value[0])
+	{
+		joined = ft_strjoin(current->value, suffix);
+		if (!joined)
+			return ;
+		if (current->value)
+			free(current->value);
+		current->value = joined;
+		return ;
+	}
+	else
+		validate_and_set(key, suffix, env_list);
 }
 
 void	unset_env_var(t_env **env_list, char *key)

@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   export_split.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: torakoto <torakoto@student.42antananari    +#+  +:+       +#+        */
+/*   By: hfandres <hfandres@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 11:55:55 by torakoto          #+#    #+#             */
-/*   Updated: 2025/12/22 21:47:22 by torakoto         ###   ########.fr       */
+/*   Updated: 2026/01/20 19:54:57 by hfandres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtins.h"
 #include "minishell.h"
 
-static char	*extract_key(char *arg, char *equals)
+char	*extract_key(char *arg, char *equals)
 {
 	char	*key;
 	size_t	key_len;
@@ -42,7 +42,7 @@ static int	count_len(const char *str)
 			in_space = 1;
 		else
 		{
-			if (in_space && len > 0)
+			if (in_space)
 				len++;
 			len++;
 			in_space = 0;
@@ -71,7 +71,7 @@ char	*normalize_whitespace(const char *str)
 			i++;
 		if (str[i])
 		{
-			if (j > 0)
+			if (i > 0)
 				new_str[j++] = ' ';
 			while (str[i] && !ft_isspace((unsigned char)str[i]))
 				new_str[j++] = str[i++];
@@ -81,11 +81,11 @@ char	*normalize_whitespace(const char *str)
 	return (new_str);
 }
 
-int	split_assignment(char *arg, char **key, char **value)
+int	split_assignment(char *arg, char **key, char **value, char *operator)
 {
 	char	*equals;
 
-	equals = ft_strchr(arg, '=');
+	equals = ft_strnstr(arg, operator, ft_strlen(arg));
 	if (!equals)
 	{
 		*key = ft_strdup(arg);
@@ -98,7 +98,7 @@ int	split_assignment(char *arg, char **key, char **value)
 		*value = NULL;
 		return (0);
 	}
-	*value = normalize_whitespace(equals + 1);
+	*value = normalize_whitespace(equals + ft_strlen(operator));
 	if (!*value)
 	{
 		free(*key);
