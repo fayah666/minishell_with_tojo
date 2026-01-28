@@ -6,11 +6,12 @@
 /*   By: hfandres <hfandres@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 10:53:11 by hfandres          #+#    #+#             */
-/*   Updated: 2026/01/18 15:19:47 by hfandres         ###   ########.fr       */
+/*   Updated: 2026/01/23 09:33:46 by hfandres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include <errno.h>
 
 static char	*create_temp_file(int *out_fd)
 {
@@ -18,7 +19,12 @@ static char	*create_temp_file(int *out_fd)
 
 	filename = create_unique_temp_file(out_fd);
 	if (!filename)
+	{
+		ft_putstr_fd ("minishell: heredoc: temp file error: ", 2);
+		ft_putstr_fd (strerror(errno), 2);
+		ft_putchar_fd('\n', 2);
 		return (NULL);
+	}
 	return (filename);
 }
 

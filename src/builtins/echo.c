@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: torakoto <torakoto@student.42antananarivo. +#+  +:+       +#+        */
+/*   By: torakoto <torakoto@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 09:15:15 by torakoto          #+#    #+#             */
-/*   Updated: 2026/01/15 09:40:43 by torakoto         ###   ########.fr       */
+/*   Updated: 2026/01/23 14:37:03 by torakoto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@ static int	is_flag(char *str)
 	if (str == NULL)
 		return (0);
 	if (*str != '-')
+		return (0);
+	str++;
+	if (*str != 'n')
 		return (0);
 	str++;
 	while (*str != '\0')

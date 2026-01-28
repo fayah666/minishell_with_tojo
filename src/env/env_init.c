@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: torakoto <torakoto@student.42antananari    +#+  +:+       +#+        */
+/*   By: hfandres <hfandres@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 14:27:18 by torakoto          #+#    #+#             */
-/*   Updated: 2025/12/22 21:47:40 by torakoto         ###   ########.fr       */
+/*   Updated: 2026/01/20 21:58:57 by hfandres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

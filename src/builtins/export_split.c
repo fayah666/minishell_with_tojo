@@ -29,58 +29,6 @@ char	*extract_key(char *arg, char *equals)
 	return (key);
 }
 
-static int	count_len(const char *str)
-{
-	int	len;
-	int	in_space;
-
-	len = 0;
-	in_space = 1;
-	while (*str)
-	{
-		if (ft_isspace((unsigned char)*str))
-			in_space = 1;
-		else
-		{
-			if (in_space)
-				len++;
-			len++;
-			in_space = 0;
-		}
-		str++;
-	}
-	return (len);
-}
-
-char	*normalize_whitespace(const char *str)
-{
-	char	*new_str;
-	int		i;
-	int		j;
-
-	if (!str)
-		return (NULL);
-	new_str = malloc(count_len(str) + 1);
-	if (!new_str)
-		return (NULL);
-	i = 0;
-	j = 0;
-	while (str[i])
-	{
-		while (str[i] && ft_isspace((unsigned char)str[i]))
-			i++;
-		if (str[i])
-		{
-			if (i > 0)
-				new_str[j++] = ' ';
-			while (str[i] && !ft_isspace((unsigned char)str[i]))
-				new_str[j++] = str[i++];
-		}
-	}
-	new_str[j] = '\0';
-	return (new_str);
-}
-
 int	split_assignment(char *arg, char **key, char **value, char *operator)
 {
 	char	*equals;
@@ -98,7 +46,7 @@ int	split_assignment(char *arg, char **key, char **value, char *operator)
 		*value = NULL;
 		return (0);
 	}
-	*value = normalize_whitespace(equals + ft_strlen(operator));
+	*value = ft_strdup(equals + ft_strlen(operator));
 	if (!*value)
 	{
 		free(*key);

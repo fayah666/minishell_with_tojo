@@ -6,7 +6,7 @@
 /*   By: hfandres <hfandres@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 15:10:38 by torakoto          #+#    #+#             */
-/*   Updated: 2026/01/20 20:15:33 by hfandres         ###   ########.fr       */
+/*   Updated: 2026/01/20 22:04:59 by hfandres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int	append_env_var(t_env **env_list, char *key, char *suffix)
 		return (0);
 	}
 	else
-		return (validate_and_set(key, suffix, env_list));
+		return (validate_and_set(key, suffix, env_list, NULL));
 }
 
 void	unset_env_var(t_env **env_list, char *key)

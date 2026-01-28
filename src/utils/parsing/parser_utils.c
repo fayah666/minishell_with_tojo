@@ -6,7 +6,7 @@
 /*   By: hfandres <hfandres@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 10:47:48 by torakoto          #+#    #+#             */
-/*   Updated: 2026/01/15 12:15:48 by hfandres         ###   ########.fr       */
+/*   Updated: 2026/01/21 01:44:08 by hfandres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,10 @@ int	is_redir(t_type type)
 
 int	syntax_error(char *token_content, t_all *all)
 {
-	printf("minishell: syntax error near unexpected token `%s'\n",
-		token_content);
+	write(2, "minishell: ", 11);
+	write(2, "syntax Error near unexpected token `", 36);
+	write(2, token_content, strlen(token_content));
+	write(2, "'\n", 2);
 	all->exit_code = EXIT_SYNTAX_ERROR;
 	return (1);
 }

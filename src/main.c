@@ -6,7 +6,7 @@
 /*   By: hfandres <hfandres@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 14:01:29 by torakoto          #+#    #+#             */
-/*   Updated: 2026/01/20 14:44:47 by hfandres         ###   ########.fr       */
+/*   Updated: 2026/01/23 07:48:34 by hfandres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,10 @@ static void	process_input(char *input, t_all *all)
 	}
 	if (has_consecutive_pipes(input))
 	{
-		syntax_error("||", all);
+		if (has_consecutive_pipes(input) == 1)
+			syntax_error("||", all);
+		else
+			syntax_error("|", all);
 		return ;
 	}
 	all->tokens = lexer(input);

@@ -6,13 +6,13 @@
 #    By: hfandres <hfandres@student.42antananari    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/24 13:48:51 by torakoto          #+#    #+#              #
-#    Updated: 2026/01/19 09:08:36 by hfandres         ###   ########.fr        #
+#    Updated: 2026/01/24 16:56:51 by hfandres         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 
-CC = cc -g
+CC = cc
 CFLAGS = -Wall -Wextra -Werror -I includes -I libft
 LDFLAGS_READLINE = -lreadline
 
@@ -35,7 +35,6 @@ SRCS =	$(SRC_DIR)/main.c \
         $(SRC_DIR)/signals/signals_heredoc.c \
         $(SRC_DIR)/parsing/lexer.c \
         $(SRC_DIR)/parsing/expander.c \
-        $(SRC_DIR)/parsing/expander_content.c \
         $(SRC_DIR)/parsing/parser.c \
         $(SRC_DIR)/parsing/parser_args.c \
         $(SRC_DIR)/parsing/parser_free.c \
@@ -62,10 +61,13 @@ SRCS =	$(SRC_DIR)/main.c \
         $(SRC_DIR)/utils/colors.c \
         $(SRC_DIR)/utils/parsing/token_utils.c \
         $(SRC_DIR)/utils/parsing/expander_utils.c \
+		$(SRC_DIR)/utils/parsing/expander_utils_2.c \
         $(SRC_DIR)/utils/parsing/parser_utils.c \
         $(SRC_DIR)/utils/parsing/parser_heredoc_utils.c \
         $(SRC_DIR)/utils/builtins/export_utils.c \
         $(SRC_DIR)/utils/builtins/builtins_utils.c \
+		$(SRC_DIR)/utils/builtins/cd_utils.c \
+		$(SRC_DIR)/utils/exec/path_utils.c
 
 OBJS = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCS))
 

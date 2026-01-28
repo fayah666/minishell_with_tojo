@@ -6,7 +6,7 @@
 /*   By: hfandres <hfandres@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 11:40:38 by torakoto          #+#    #+#             */
-/*   Updated: 2025/12/23 13:22:02 by hfandres         ###   ########.fr       */
+/*   Updated: 2026/01/23 08:20:12 by hfandres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,4 +81,25 @@ void	remove_token(t_all *all, t_token *prev, t_token *current, t_token *next)
 		all->tokens = next;
 	free(current->content);
 	free(current);
+}
+
+char	*handle_value(char *key, char *value, t_exp_state *state, int at_start)
+{
+	char	*result;
+
+	if (ft_strlen(value) > 0)
+	{
+		if (!state->quote_char)
+			result = normalize_whitespace(value, at_start);
+		else
+			result = value;
+	}
+	else if (ft_isdigit(key[0]))
+		result = ft_strdup(key + 1);
+	else
+		result = ft_strdup("");
+	free(key);
+	if (result != value)
+		free(value);
+	return (result);
 }

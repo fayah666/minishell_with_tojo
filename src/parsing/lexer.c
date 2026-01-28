@@ -49,10 +49,12 @@ int	has_consecutive_pipes(const char *input)
 		else if (quote_char == 0 && input[i] == '|')
 		{
 			j = i + 1;
+			if (input[j] == '|')
+				return (1);
 			while (input[j] && ft_isspace((unsigned int)input[j]))
 				j++;
 			if (input[j] == '|')
-				return (1);
+				return (2);
 		}
 		i++;
 	}

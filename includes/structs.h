@@ -6,7 +6,7 @@
 /*   By: hfandres <hfandres@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 14:24:27 by torakoto          #+#    #+#             */
-/*   Updated: 2026/01/10 10:50:12 by hfandres         ###   ########.fr       */
+/*   Updated: 2026/01/23 08:50:23 by hfandres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ typedef struct s_exp_state
 {
 	int				i;
 	char			quote_char;
+	int				passed_start;
 }					t_exp_state;
 
 typedef struct s_expand_state

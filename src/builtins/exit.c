@@ -6,7 +6,7 @@
 /*   By: hfandres <hfandres@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 10:02:42 by torakoto          #+#    #+#             */
-/*   Updated: 2026/01/15 13:26:16 by hfandres         ###   ########.fr       */
+/*   Updated: 2026/01/20 22:21:55 by hfandres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,10 @@ int	check_arguments(t_all *all, t_cmd *cmd)
 	{
 		if (!is_numeric_string(cmd->args[1]) || check_limits(cmd->args[1]))
 		{
-			exec_error("exit", "numeric argument required");
+			write(2, "minishell: ", 11);
+			write(2, "exit: ", 6);
+			write(2, cmd->args[1], ft_strlen(cmd->args[1]));
+			write(2, ": numeric argument required\n", 28);
 			free_all_and_exit(all, 2);
 		}
 		if (cmd->args[2])

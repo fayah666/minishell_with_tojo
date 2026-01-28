@@ -6,7 +6,7 @@
 /*   By: hfandres <hfandres@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 13:58:17 by torakoto          #+#    #+#             */
-/*   Updated: 2026/01/20 20:09:03 by hfandres         ###   ########.fr       */
+/*   Updated: 2026/01/23 08:22:43 by hfandres         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,12 +71,15 @@ int			expander(t_all *all);
 char		*get_env_value(const char *key, t_env *env_list);
 char		*append_char(char *str, char c);
 char		*join_and_free(char *s1, char *s2);
+char		*normalize_whitespace(char *str, int strip_leading);
 void		remove_token(t_all *all, t_token *prev, t_token *current,
 				t_token *next);
+void		init_exp_state(t_exp_state *state, char *content);
 
 t_cmd		*parser(t_all *all);
 void		parse_and_add_node(const char *env_str, t_env **env_list);
-char		*expand_token_content(char *content, t_all *all);
+char		*handle_value(char *key, char *value,
+				t_exp_state *state, int at_start);
 void		free_cmd_table(t_cmd *head);
 
 t_cmd		*new_cmd_node(void);
